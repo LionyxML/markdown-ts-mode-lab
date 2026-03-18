@@ -11,3 +11,4 @@
 # Undo-tree save-files
 *.~undo-tree
 screenshots/
+generate-screenshots.el
