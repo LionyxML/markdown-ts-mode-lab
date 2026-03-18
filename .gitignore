@@ -12,3 +12,4 @@
 *.~undo-tree
 screenshots/
 generate-screenshots.el
+.DS_Store
