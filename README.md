@@ -41,10 +41,9 @@ submitted to `emacs-devel`.
   * review status
   * planned and in-progress work
 
-* `screenshots/`
-  Visual snapshots of test.md rendering for reference, typically
-  generated using the latest local code, including changes not yet
-  submitted.
+* `demo/`
+  A folder containing `test.md` rendered on the default theme and
+  other themes, with the hide markup feature turned off (raw) and on.
 
 ## Upstream parser
 
@@ -131,13 +130,13 @@ Before reporting a bug:
 
 ## Screenshots
 
-* [Default Theme Raw](demo-default-theme-raw.md)
-* [Default Theme Hidden Markup](demo-default-theme-hidden.md)
-* [Modus Operandi Raw](demo-modus-operandi-raw.md)
-* [Modus Operandi Hidden Markup](demo-modus-operandi-hidden.md)
-* [Modus Vivendi Raw](demo-modus-vivendi-raw.md)
-* [Modus Vivendi Hidden Markup](demo-modus-vivendi-hidden.md)
-* [Leuven Raw](demo-leuven-raw.md)
-* [Leuven Hidden Markup](demo-leuven-hidden.md)
-* [Leuven Dark Raw](demo-leuven-dark-raw.md)
-* [Leuven Dark Hidden Markup](demo-leuven-dark-hidden.md)
+* [Default Theme Raw](demo/demo-default-theme-raw.md)
+* [Default Theme Hidden Markup](demo/demo-default-theme-hidden.md)
+* [Modus Operandi Raw](demo/demo-modus-operandi-raw.md)
+* [Modus Operandi Hidden Markup](demo/demo-modus-operandi-hidden.md)
+* [Modus Vivendi Raw](demo/demo-modus-vivendi-raw.md)
+* [Modus Vivendi Hidden Markup](demo/demo-modus-vivendi-hidden.md)
+* [Leuven Raw](demo/demo-leuven-raw.md)
+* [Leuven Hidden Markup](demo/demo-leuven-hidden.md)
+* [Leuven Dark Raw](demo/demo-leuven-dark-raw.md)
+* [Leuven Dark Hidden Markup](demo/demo-leuven-dark-hidden.md)
