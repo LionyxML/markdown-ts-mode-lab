@@ -98,7 +98,7 @@ _ _ _
 > - List item inside a block quote.
 >
 > ```python
-> print("code block inside a quote")
+>    print("code block inside a quote")
 > ```
 >
 >     indented code inside a block quote
@@ -224,6 +224,15 @@ fn main() {
 	println!("{}", item);
     }
 }
+```
+
+<!-- Fenced Code Blocks: non-tree-sitter mode fontification (elisp) -->
+```elisp
+(defun hello (name)
+  "Greet the user by NAME."
+  (message "Hello, %s!" name))
+
+(hello "friend")
 ```
 
 <!-- Fenced Code Blocks: opening/closing fence delimiter fontification -->
@@ -802,3 +811,4 @@ This text has a footnote[^1] reference.
 
 <!-- Other: export to HTML / preview -->
 <!-- Export this document to HTML or preview in a browser. -->
+

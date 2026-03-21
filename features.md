@@ -62,6 +62,7 @@ exposes is listed here so we can track what markdown-ts-mode supports.
 - [x] `code_fence_content` fontification
 - [x] Language-specific fontification inside code blocks
 - [x] Language-specific indentation inside code blocks
+- [x] Non-tree-sitter mode fontification (e.g., `elisp` via `emacs-lisp-mode`)
 - [x] Opening/closing fence delimiter fontification
 
 ### Indented Code Blocks
