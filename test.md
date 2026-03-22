@@ -812,3 +812,20 @@ This text has a footnote[^1] reference.
 <!-- Other: export to HTML / preview -->
 <!-- Export this document to HTML or preview in a browser. -->
 
+<!-- Fenced Code Blocks: recursive markdown fontification -->
+```markdown
+# H1
+- a
+- b
+  - c
+	- d
+## H2
+1. 1
+2. 2
+3. 3
+
+This is **bold text**.
+This is *italicized text*.
+This is emphasized ***bold italicized text***.
+This is strike through ~~text~~.
+```

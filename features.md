@@ -63,6 +63,7 @@ exposes is listed here so we can track what markdown-ts-mode supports.
 - [x] Language-specific fontification inside code blocks
 - [x] Language-specific indentation inside code blocks
 - [x] Non-tree-sitter mode fontification (e.g., `elisp` via `emacs-lisp-mode`)
+- [x] Recursive markdown fontification inside markdown code blocks
 - [x] Opening/closing fence delimiter fontification
 
 ### Indented Code Blocks
@@ -162,9 +163,9 @@ exposes is listed here so we can track what markdown-ts-mode supports.
 
 ### Entity and Numeric Character References
 
-- [ ] Named HTML entity references (`&amp;`, `&copy;`, etc.)
-- [ ] Decimal numeric character references (`&#123;`)
-- [ ] Hexadecimal numeric character references (`&#x1F4A9;`)
+- [x] Named HTML entity references (`&amp;`, `&copy;`, etc.)
+- [x] Decimal numeric character references (`&#123;`)
+- [x] Hexadecimal numeric character references (`&#x1F4A9;`)
 
 ---
 
