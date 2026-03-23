@@ -4,6 +4,9 @@ Complete feature list derived from the tree-sitter-markdown parser
 (split_parser branch). Every node type and capability the parser
 exposes is listed here so we can track what markdown-ts-mode supports.
 
+Note: `[x]` means the feature is developed and working on the
+development branch, not that it has been patched to master.
+
 ---
 
 ## 1. Block-Level - CommonMark
@@ -258,26 +261,41 @@ Rules can be added safely - they won't match if the extension is absent.
 
 - [x] Imenu support for headings
 - [x] Outline integration (`outline-minor-mode`)
-- [ ] Navigate between headings (next/previous)
+- [x] Navigate between headings (next/previous):  `C-c C-n` / `C-c C-p`
+- [x] Navigate headings same level:  `C-c C-f` / `C-c C-b`
+- [x] Navigate up to parent heading:  `C-c C-u`
 - [ ] Navigate between code blocks (next/previous)
+
+### Folding
+
+- [x] Heading folding via `outline-minor-mode` (`TAB` on headings)
+- [x] Startup folding state (`markdown-ts-startup-folded`: showeverything, fold, content)
+- [x] Custom ellipsis for folded headings (`markdown-ts-ellipsis`)
 
 ### List Editing
 
 - [ ] Auto-continue lists (RET inserts next item marker)
 - [ ] Numbered list auto-increment
-- [ ] List promotion / demotion
-- [ ] List reordering (move up/down)
+- [x] List promotion / demotion:  `M-left` / `M-right`
+- [x] List reordering (move up/down):  `M-up` / `M-down`
 - [ ] List renumbering
 
 ### Heading Editing
 
-- [ ] Heading promotion / demotion (apply to children)
-- [ ] Heading reordering (move up/down)
+- [x] Heading promotion / demotion:  `M-left` / `M-right`
+- [x] Heading reordering (move up/down):  `M-up` / `M-down`
+
+### Emphasis Editing
+
+- [x] Insert/change emphasis (`C-c C-x C-f`):  bold, italic, strikethrough, code
+- [x] Remove emphasis (SPC at emphasis prompt, or region)
 
 ### Block Editing
 
 - [ ] Block quote wrapping / unwrapping
-- [ ] Code block insertion (with language prompt)
+- [x] Code block insertion (with language prompt):  `C-c C-,` -> `c`
+- [x] Block quote insertion:  `C-c C-,` -> `q`
+- [x] Horizontal rule insertion:  `C-c C-,` -> `d`
 - [ ] Commenting / uncommenting in code blocks in language mode
 
 ### Link Editing
@@ -287,17 +305,20 @@ Rules can be added safely - they won't match if the extension is absent.
 
 ### Markup Visibility
 
-- [x] Toggle markup hiding (`markdown-ts-toggle-hide-markup`)
+- [x] Toggle markup hiding (`markdown-ts-toggle-hide-markup`):  `C-c C-x C-m`
 
 ### Visual Enhancements (overlays / rendering)
 
 - [ ] Inline image preview
-- [ ] Task list checkbox toggle (click to check/uncheck)
+- [x] Task list checkbox toggle via `C-c C-c`
+- [ ] Task list checkbox toggle via mouse click (button)
+- [ ] Task list checkbox overlay (display `[x]` as ☑ and `[ ]` as ☐)
 - [ ] Horizontal rule overlay (thematic break rendering)
 
 ### Other
 
 - [x] Comment support (HTML comments)
+- [x] Keymap (`markdown-ts-mode-map`) with bindings for all editing commands
 - [ ] Mode menu item
 - [ ] Markdown-aware kill/yank (respect block boundaries)
 - [ ] Table of contents generation from headings
@@ -310,11 +331,11 @@ Rules can be added safely - they won't match if the extension is absent.
 Bugs in the tree-sitter-markdown parser that we cannot fix on our side.
 
 - [ ] HTML block type 4 (`<!` declarations like `<!DOCTYPE>`) - parser
-      enters infinite loop on uppercase `<!DOCTYPE html>`. Lowercase
-      `<!doctype html>` works as a
-      workaround. [tree-sitter-markdown#233](https://github.com/tree-sitter-grammars/tree-sitter-markdown/issues/233)
+	  enters infinite loop on uppercase `<!DOCTYPE html>`. Lowercase
+	  `<!doctype html>` works as a
+	  workaround. [tree-sitter-markdown#233](https://github.com/tree-sitter-grammars/tree-sitter-markdown/issues/233)
 - [ ] Footnote support: parser doesn't recognize footnotes; not
-      CommonMark/GFM, no build flag; would need custom handling
+	  CommonMark/GFM, no build flag; would need custom handling
 
 ---
 
