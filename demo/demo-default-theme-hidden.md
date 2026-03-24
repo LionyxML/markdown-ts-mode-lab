@@ -26,3 +26,5 @@
 
 ![test-default-hidden-13.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-default-hidden-13.png)
 
+![test-default-hidden-14.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-default-hidden-14.png)
+

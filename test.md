@@ -300,6 +300,16 @@ block.
 This is CDATA content in an HTML block.
 ]]>
 
+<!-- HTML Blocks: standalone HTML without fence (html_block) -->
+<p class="foo">This is a standalone HTML paragraph outside any fence.</p>
+
+<nav id="main-nav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</nav>
+
 <!-- HTML Blocks: type 6 (block-level HTML elements) -->
 <div>
   <p>This is a block-level HTML element.</p>
@@ -450,6 +460,14 @@ The autolink <https://www.example.com> should be clickable.
 
 <!-- Autolinks: angle bracket hiding when markup is hidden -->
 When markup is hidden, <https://www.example.com> should show without < >.
+
+<!-- Naked URLs: bare URLs without angle brackets -->
+<!-- These are not handled by the grammar; goto-address-mode is a candidate. -->
+Visit https://www.gnu.org for more info.
+
+Here is a URL in the middle of text https://www.example.com/path?query=1&foo=bar and text continues.
+
+Also email addresses without angle brackets: user@example.com should ideally be recognized.
 
 <!-- Inline HTML: open tags with attributes -->
 This is <span class="highlight" id="test"> inline HTML with attributes.
@@ -811,6 +829,42 @@ This text has a footnote[^1] reference.
 
 <!-- Other: export to HTML / preview -->
 <!-- Export this document to HTML or preview in a browser. -->
+
+<!-- Fenced Code Blocks: nroff conventional mode -->
+```nroff
+.\" Created from Texinfo source by yat2m 1.58
+.TH GNUPG 7 2025-02-19 "GnuPG 2.4.9" "GNU Privacy Guard 2.4"
+.SH NAME
+.B GnuPG
+\- The GNU Privacy Guard suite of programs
+.SH DESCRIPTION
+GnuPG is a set of programs for public key encryption and digital
+signatures.
+.SH SEE ALSO
+\fBgpg\fP(1),
+\fBgpgsm\fP(1)
+```
+
+<!-- Fenced Code Blocks: latex/tex -->
+```latex
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\section{Introduction}
+The equation $E = mc^2$ is famous.
+
+\begin{equation}
+  \int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
+\end{equation}
+\end{document}
+```
+
+```tex
+\begin{itemize}
+  \item First item
+  \item Second item
+\end{itemize}
+```
 
 <!-- Fenced Code Blocks: recursive markdown fontification -->
 ```markdown

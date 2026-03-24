@@ -26,3 +26,5 @@
 
 ![test-modus-operandi-hidden-13.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-operandi-hidden-13.png)
 
+![test-modus-operandi-hidden-14.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-operandi-hidden-14.png)
+

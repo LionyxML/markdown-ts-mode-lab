@@ -68,6 +68,9 @@ development branch, not that it has been patched to master.
 - [x] Non-tree-sitter mode fontification (e.g., `elisp` via `emacs-lisp-mode`)
 - [x] Recursive markdown fontification inside markdown code blocks
 - [x] Opening/closing fence delimiter fontification
+- [x] Code block background face (overlay, with separate face for hidden markup)
+- [x] Conventional mode code blocks: nroff (via `nroff-mode`)
+- [x] Conventional mode code blocks: latex/tex (via `latex-mode`)
 
 ### Indented Code Blocks
 
@@ -82,6 +85,7 @@ development branch, not that it has been patched to master.
 - [x] HTML block type 5 (`<![CDATA[`)
 - [x] HTML block type 6 (block-level HTML elements)
 - [x] HTML block type 7 (complete open/close tag on its own line)
+- [x] Dedicated `html_block` face (standalone HTML like `<p class="foo">`)
 
 ### Link Reference Definitions
 
@@ -143,6 +147,7 @@ development branch, not that it has been patched to master.
 - [x] Email autolink (`<user@domain>`)
 - [x] Autolink fontification as clickable button
 - [x] Angle bracket hiding when markup is hidden
+- [x] Naked URL recognition (bare URLs and emails via jit-lock regex)
 
 ### Inline HTML
 
@@ -217,12 +222,12 @@ development branch, not that it has been patched to master.
 
 ### LaTeX / Math
 
-Requires grammar compiled with `EXTENSION_LATEX=1` (disabled by default).
-Rules can be added safely - they won't match if the extension is absent.
+The inline parser recognizes `latex_block` and `latex_span_delimiter`
+nodes without `EXTENSION_LATEX=1`.
 
-- [ ] Inline math (`$...$`)
-- [ ] Display math (`$$...$$`)
-- [ ] LaTeX delimiter fontification
+- [x] Inline math (`$...$`)
+- [x] Display math (`$$...$$`)
+- [x] LaTeX delimiter fontification (hidden when markup is hidden)
 - [ ] LaTeX content handling (no markdown processing inside)
 
 ### Wiki Links
@@ -296,6 +301,7 @@ Rules can be added safely - they won't match if the extension is absent.
 - [x] Code block insertion (with language prompt):  `C-c C-,` -> `c`
 - [x] Block quote insertion:  `C-c C-,` -> `q`
 - [x] Horizontal rule insertion:  `C-c C-,` -> `d`
+- [ ] Code block editing in indirect buffer (Stéphane's task)
 - [ ] Commenting / uncommenting in code blocks in language mode
 
 ### Link Editing
@@ -312,18 +318,21 @@ Rules can be added safely - they won't match if the extension is absent.
 - [ ] Inline image preview
 - [x] Task list checkbox toggle via `C-c C-c`
 - [ ] Task list checkbox toggle via mouse click (button)
-- [ ] Task list checkbox overlay (display `[x]` as ☑ and `[ ]` as ☐)
-- [ ] Horizontal rule overlay (thematic break rendering)
+- [x] Task list checkbox overlay (display `[x]` as ☑ and `[ ]` as ☐)
+- [x] Horizontal rule dedicated face (`markdown-ts-thematic-break`)
+- [x] Horizontal rule overlay (full-width line when markup is hidden)
+- [x] Entity overlay (display decoded character when markup is hidden)
 
 ### Other
 
 - [x] Comment support (HTML comments)
 - [x] Keymap (`markdown-ts-mode-map`) with bindings for all editing commands
-- [ ] Mode menu item
+- [ ] Markdown-classic keybinding recipe (documentation for users coming from markdown-mode)
+- [x] Mode menu item
 - [ ] Markdown-aware kill/yank (respect block boundaries)
 - [ ] Table of contents generation from headings
 - [ ] Theme support for markdown-ts faces (modus-themes, etc.)
-- [ ] Tests for delicate features
+- [ ] Automated ERT tests (comprehensive test suite once features stabilize)
 - [ ] Export to HTML / preview
 
 ### Parser Bugs
@@ -331,11 +340,18 @@ Rules can be added safely - they won't match if the extension is absent.
 Bugs in the tree-sitter-markdown parser that we cannot fix on our side.
 
 - [ ] HTML block type 4 (`<!` declarations like `<!DOCTYPE>`) - parser
-	  enters infinite loop on uppercase `<!DOCTYPE html>`. Lowercase
-	  `<!doctype html>` works as a
-	  workaround. [tree-sitter-markdown#233](https://github.com/tree-sitter-grammars/tree-sitter-markdown/issues/233)
+      enters infinite loop on uppercase `<!DOCTYPE html>`. Lowercase
+      `<!doctype html>` works as a
+      workaround. [tree-sitter-markdown#233](https://github.com/tree-sitter-grammars/tree-sitter-markdown/issues/233)
+- [ ] `block_continuation` nodes inside `code_fence_content` — parser
+      inserts `block_continuation` children inside code fence content
+      (e.g., nroff blocks), breaking inspector and embedded language
+      fontification. Same root cause as Bug #3 (code blocks in block
+      quotes). Grammar-level issue.
+- [ ] Python code blocks not fontified correctly in full config —
+      Stéphane is debugging
 - [ ] Footnote support: parser doesn't recognize footnotes; not
-	  CommonMark/GFM, no build flag; would need custom handling
+      CommonMark/GFM, no build flag; would need custom handling
 
 ---
 
