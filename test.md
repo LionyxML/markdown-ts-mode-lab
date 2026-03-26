@@ -507,8 +507,38 @@ and continues on the next line.
 <!-- Backslash Escapes: backslash hiding when markup is hidden -->
 This shows \*literal asterisks\* not emphasis.
 
-<!-- Entity References: named HTML entities -->
+<!-- Entity References: named HTML entities (basic) -->
 &amp; &lt; &gt; &quot; &apos; &copy; &reg; &trade; &nbsp;
+
+<!-- Entity References: typographic punctuation -->
+&ndash; &mdash; &hellip; &bull; &lsquo; &rsquo; &ldquo; &rdquo; &prime;
+&Prime;
+
+<!-- Entity References: arrows -->
+&larr; &rarr; &uarr; &darr; &harr; &crarr;
+
+<!-- Entity References: mathematical -->
+&infin; &sum; &prod; &radic; &prop; &exist; &forall; &part; &nabla;
+&isin; &notin; &empty; &ne; &equiv; &le; &ge; &asymp; &sim; &sub; &sup;
+&sube; &supe; &oplus; &otimes; &perp;
+
+<!-- Entity References: Greek letters -->
+&Alpha; &Beta; &Gamma; &Delta; &Omega; &alpha; &beta; &gamma; &delta;
+&omega; &pi; &sigma; &theta; &lambda;
+
+<!-- Entity References: currency and symbols -->
+&euro; &pound; &yen; &cent; &sect; &para; &deg; &plusmn; &micro; &fnof;
+&loz;
+
+<!-- Entity References: card suits -->
+&spades; &clubs; &hearts; &diams;
+
+<!-- Entity References: spacing -->
+&ensp; &emsp; &thinsp;
+
+<!-- Entity References: ligatures and accented -->
+&OElig; &oelig; &Scaron; &scaron; &Yuml; &Agrave; &Eacute; &Ntilde;
+&szlig; &AElig; &aelig;
 
 <!-- Entity References: decimal numeric character references -->
 &#65; &#66; &#67; &#8212; &#123; &#125;
@@ -636,6 +666,30 @@ The $delimiters$ around math should be fontified.
 
 <!-- LaTeX / Math: content handling (no markdown processing inside) -->
 This $*is not emphasis* inside math$ should be literal.
+
+<!-- LaTeX / Math: complex inline -->
+$\sqrt{3x-1}+(1+x)^2$
+
+<!-- LaTeX / Math: multi-line display with nested $ and \\ -->
+$$
+f(x)=
+\begin{cases}
+1/d_{ij} & \quad \text{when $d_{ij} \leq 160$}\\
+0 & \quad \text{otherwise}
+\end{cases}
+$$
+
+<!-- LaTeX / Math: inline math in list items -->
+- $x + y$
+- $x - y$
+- $x \times y$
+- $x \div y$
+- $\dfrac{x}{y}$
+
+<!-- Superscript / Subscript: NOT SUPPORTED by tree-sitter-markdown grammar.
+     No EXTENSION_ build flag exists for this.  Pandoc/PHP Markdown Extra
+     syntax like superscript^2^ or subscript~2~ will not be parsed. -->
+superscript^2^ and subscript~2~ are NOT recognized.
 
 <!-- Wiki Links: basic -->
 See [[SomePage]] for more information.
@@ -883,3 +937,70 @@ This is *italicized text*.
 This is emphasized ***bold italicized text***.
 This is strike through ~~text~~.
 ```
+
+---
+
+# Fill Paragraph Tests
+
+## Fill on unnumbered lists
+
+<!-- Test A: cursor on col 0 of the long "- three" line, M-q.
+     Expected: only the long item wraps, others untouched. -->
+
+- one is a short item that should not be touched at all
+- two is another short item that should remain exactly as it is
+- three is a very long list item that absolutely needs to be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width by a significant amount
+- four is yet another short item that must stay on its own line
+
+<!-- Test B: cursor on col 0 of the long "- two" line, M-q.
+     Expected: only the long item wraps, others untouched. -->
+
+- one is a short item
+- two is a very long list item that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it exceeds the fill-column width significantly and needs to be broken into multiple lines
+- three is a short item
+- four is a short item
+
+<!-- Test C: cursor on col 0 of the long "- This is..." item, M-q.
+     Expected: only the long item wraps, others untouched. -->
+
+- This is a very long list item that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it exceeds the fill-column width significantly.
+- short item
+- another short item
+
+<!-- Test D: cursor on col 0 of the long "  - inner one" line, M-q.
+     Expected: only the long inner item wraps, no merging across
+     items or nesting levels. -->
+
+- outer one
+- outer two has some text here
+  - inner one is a very long nested list item that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width by a large margin
+  - inner two is short
+- outer three
+
+## Fill in block quotes
+
+<!-- Test E: cursor on col 0 of the long "> block quote" line, M-q.
+     Expected: long line wraps with "> " prefix, no merging across
+     different nesting levels. -->
+
+> block quote that is a very long line and should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width by a significant amount
+> > nested block quote
+> >
+> > - item
+> > - item
+> block quote
+
+<!-- Test F: cursor on col 0 of the long "> This is..." line, M-q.
+     Expected: long line wraps with "> " prefix.  "Short line" merges
+     in because both lines form one paragraph (no blank line between). -->
+
+> This is a very long block quote line that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column.
+> Short line.
+
+<!-- Test G: cursor on col 0 of the long "> This is..." line, M-q.
+     Expected: long line wraps with "> " prefix.  "Short line" stays
+     separate because the blank "> " line creates a paragraph break. -->
+
+> This is a very long block quote line that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column.
+>
+> Short line.

@@ -239,6 +239,12 @@ Rules can be added safely - they won't match if the extension is absent.
 - [ ] Wiki link with display text (`[[destination|text]]`)
 - [ ] Wiki link fragment identifiers (`[[page#section]]`)
 
+### Superscript / Subscript
+
+Not supported.  The grammar has no `EXTENSION_` flag for superscript
+(`^text^`) or subscript (`~text~`).  This is Pandoc / PHP Markdown Extra
+syntax, not CommonMark or GFM.  Would require upstream grammar support.
+
 ### Tags
 
 Requires grammar compiled with `EXTENSION_TAGS=1` (disabled by default).
@@ -254,12 +260,14 @@ Rules can be added safely - they won't match if the extension is absent.
 ### Filling
 
 - [x] fill-paragraph respecting list items
+- [x] fill-paragraph for nested/indented list items (col 0 fix)
 - [x] fill-paragraph skipping code blocks
 - [x] fill-paragraph skipping tables
 - [x] fill-paragraph for HTML comments
+- [x] fill-paragraph for block quotes (respects nesting levels)
 - [x] fill-region over multiple paragraphs
 - [x] Adaptive fill prefix for list items
-- [ ] Auto-fill respecting markdown structure (lists, blocks)
+- [ ] Auto-fill respecting markdown structure (works for most cases; see test.md Test G for a block quote case where the `> ` prefix loses its space)
 - [ ] Filling inside code blocks in language mode
 
 ### Navigation

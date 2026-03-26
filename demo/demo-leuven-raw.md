@@ -30,3 +30,7 @@
 
 ![test-leuven-raw-15.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-raw-15.png)
 
+![test-leuven-raw-16.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-raw-16.png)
+
+![test-leuven-raw-17.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-raw-17.png)
+
