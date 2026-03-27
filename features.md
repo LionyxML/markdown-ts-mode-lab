@@ -264,10 +264,10 @@ Rules can be added safely - they won't match if the extension is absent.
 - [x] fill-paragraph skipping code blocks
 - [x] fill-paragraph skipping tables
 - [x] fill-paragraph for HTML comments
-- [x] fill-paragraph for block quotes (respects nesting levels)
+- [x] fill-paragraph for block quotes (respects nesting levels, preserves prefix style)
 - [x] fill-region over multiple paragraphs
 - [x] Adaptive fill prefix for list items
-- [ ] Auto-fill respecting markdown structure (works for most cases; see test.md Test G for a block quote case where the `> ` prefix loses its space)
+- [ ] Auto-fill respecting markdown structure
 - [ ] Filling inside code blocks in language mode
 
 ### Navigation
@@ -287,11 +287,11 @@ Rules can be added safely - they won't match if the extension is absent.
 
 ### List Editing
 
-- [ ] Auto-continue lists (RET inserts next item marker)
-- [ ] Numbered list auto-increment
+- [x] Auto-continue lists (RET inserts next item marker)
+- [x] Numbered list auto-increment
 - [x] List promotion / demotion:  `M-left` / `M-right`
 - [x] List reordering (move up/down):  `M-up` / `M-down`
-- [ ] List renumbering
+- [x] List renumbering: `C-c C-r` (`markdown-ts-renumber-list`), `C-u N` to override start
 
 ### Heading Editing
 

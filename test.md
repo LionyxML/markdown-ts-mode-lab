@@ -1004,3 +1004,181 @@ This is strike through ~~text~~.
 > This is a very long block quote line that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column.
 >
 > Short line.
+
+## Fill in nested block quotes with blank separator
+
+<!-- Test H: cursor on "nested block quote" line (line 2), M-q.
+     Expected: text stays on its own line, the "> >" blank line is
+     NOT merged into it.  The list items below are untouched. -->
+
+> block quote
+> > nested block quote
+> >
+> > - item
+> > - item
+> block quote
+
+<!-- Test I: cursor on the long "> > nested..." line, M-q.
+     Expected: long line wraps with "> > " prefix.  The blank "> >"
+     line acts as a paragraph break — list items are not merged. -->
+
+> block quote
+> > nested block quote that is a very long line and should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width
+> >
+> > - item one
+> > - item two
+> block quote
+
+## List promote/demote on ordered lists
+
+<!-- Test J: cursor on "2. two" line, M-left or M-right.
+     Expected: user-error "Ordered list items cannot be nested
+     (grammar limitation)".  The item must NOT be indented. -->
+
+1. one
+2. two
+3. three
+
+<!-- Test K: cursor on "- bar" line, M-right then M-left.
+     Expected: demote indents "- bar" under "- foo", promote
+     dedents it back.  Both directions work for unordered lists. -->
+
+- foo
+- bar
+- baz
+
+## Fill in nested block quotes preserves prefix style
+
+<!-- Test L: cursor on the long "> > nested..." line, M-q.
+     Expected: long line wraps with "> > " prefix (spaced style)
+     on continuation lines.  Blank "> >" is not merged. -->
+
+> block quote
+> > nested block quote that is a very long line and should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width
+> >
+> > - item
+> block quote
+
+<!-- Test M: cursor on the long ">> nested..." line, M-q.
+     Expected: long line wraps with ">> " prefix (compact style)
+     on continuation lines.  Blank ">>" is not merged. -->
+
+> block quote
+>> nested block quote that is a very long line and should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width
+>>
+>> - item
+> block quote
+
+<!-- Test N: cursor on the long ">>> deep..." line, M-q.
+     Expected: long line wraps with ">>> " prefix (compact style)
+     on continuation lines. -->
+
+>>> deep block quote that is a very long line and should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width
+
+<!-- Test O: cursor on the long "> > > deep..." line, M-q.
+     Expected: long line wraps with "> > > " prefix (spaced style)
+     on continuation lines. -->
+
+> > > deep block quote that is a very long line and should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width
+
+## Auto-continue lists (RET)
+
+<!-- Test P: cursor at end of "- foo" line, RET.
+     Expected: new line "- " inserted, cursor after "- ". -->
+
+- foo
+- bar
+- baz
+
+<!-- Test Q: cursor at end of "2. second" line, RET.
+     Expected: new line "3. " inserted with incremented number. -->
+
+1. first
+2. second
+3. third
+
+<!-- Test R: cursor at end of "  - inner" line, RET.
+     Expected: new line "  - " inserted at same nesting level. -->
+
+- outer
+  - inner
+  - inner2
+- outer2
+
+<!-- Test S: cursor at end of "* one" line, RET.
+     Expected: new line "* " inserted (star marker preserved). -->
+
+* one
+* two
+
+<!-- Test T: cursor at end of "+ one" line, RET.
+     Expected: new line "+ " inserted (plus marker preserved). -->
+
++ one
++ two
+
+<!-- Test U: cursor at end of "2) beta" line, RET.
+     Expected: new line "3) " inserted (parenthesis style). -->
+
+1) alpha
+2) beta
+
+<!-- Test V: type "- " then some text, RET, type more text, then
+     RET on an empty item (just "- " with no text).
+     Expected: the empty "- " line is removed (org-mode convention). -->
+
+- type here then RET
+-
+
+<!-- Test W: cursor at end of "    - deeply nested" line, RET.
+     Expected: new line "    - " at same 4-space indent level. -->
+
+- level 1
+  - level 2
+    - deeply nested
+    - also nested
+
+<!-- Test X: cursor at end of a paragraph (not in a list), RET.
+     Expected: normal newline, no marker inserted. -->
+
+This is just a paragraph, not a list item.
+
+## List renumbering
+
+<!-- Test Y: cursor anywhere in the list, C-c C-r.
+     Expected: renumber from first item's number (41, 42, 43). -->
+
+41. first
+3. second
+5. third
+
+<!-- Test Z: cursor anywhere in the list, C-u 10 C-c C-r.
+     Expected: renumber starting from 10 (10, 11, 12). -->
+
+1. first
+5. second
+99. third
+
+<!-- Test AA: nested unordered inside ordered, cursor on "- bar", C-c C-r.
+     Expected: no-op (unordered list is not renumbered).
+     Note: nested ordered lists don't work (parser limitation,
+     see Commentary).  Only unordered lists nest correctly. -->
+
+1. outer
+   - foo
+   - bar
+2. outer two
+
+<!-- Test AB: parenthesis style, C-c C-r.
+     Expected: renumber from 5 (5, 6, 7). -->
+
+5) alpha
+1) beta
+9) gamma
+
+<!-- Test AC: unordered list, C-c C-r.
+     Expected: no-op, unordered lists are not renumbered. -->
+
+- one
+- two
+- three

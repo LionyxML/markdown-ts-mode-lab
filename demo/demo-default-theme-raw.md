@@ -32,3 +32,7 @@
 
 ![test-default-raw-16.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-default-raw-16.png)
 
+![test-default-raw-17.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-default-raw-17.png)
+
+![test-default-raw-18.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-default-raw-18.png)
+
