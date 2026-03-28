@@ -1182,3 +1182,132 @@ This is just a paragraph, not a list item.
 - one
 - two
 - three
+
+---
+
+# Round 6 Test Cases
+
+## RET in block quotes (spurious list items)
+
+<!-- Test: Place point at x and press RET.
+     Expected: new "> " line, NOT a "- " item.
+     Bug was: parser sees block_continuation, finds wrong list_item. -->
+
+> block quote
+> > nested block quote
+> >
+> > - item
+> > - item
+> block quote x
+x
+
+## RET in block-quoted list
+
+<!-- Test: Place point at x and press RET.
+     Expected: new "> > - " line with proper quote prefix. -->
+
+> block quote
+> > nested block quote
+> >
+> > - item x
+> > - item
+> block quote
+
+## Empty list items preserved
+
+<!-- Test: Place point after the empty "- " and press RET.
+     Expected: new "- " below, empty item NOT deleted.
+     "I'd prefer to keep empty list items." -->
+
+- foo
+-
+- bar
+
+1. first
+2.
+3. third
+
+## RET in indented code block
+
+<!-- Test: Place point at x and press RET.
+     Expected: new line at same indentation (4 spaces). -->
+
+    pre block x
+    more pre block
+
+## Fill short block-quoted list (no space removal)
+
+<!-- Test: Place point inside item on last line and M-q.
+     Expected: nothing changes, no space removed after ">".
+     Bug was: "> > - item" became "> >- item". -->
+
+> >
+> > - item
+> > - item
+
+## Fill long block-quoted list (should wrap)
+
+<!-- Test: Place point inside the long item and M-q.
+     Expected: wraps with "> > " prefix and list alignment.
+     Bug was: fill did nothing. -->
+
+> > - item weofij wefoijw efoijw efoiwje foiwejf oiwejf oiwefj owiefj woiefj woeifj weoifj weofij weofij weofij wefoij wefoijw efoiwje foij
+> > - item
+
+## Renumber nested list (no extra indent)
+
+<!-- Test: Place point on "1. bar" and C-c C-r.
+     Expected: renumbers to 1, 2 without adding extra indentation.
+     Bug was: indentation doubled. -->
+
+- foo
+  1. bar
+  1. baz
+
+## Renumber preserves tabs
+
+<!-- Test: Place point in list and C-c C-r.
+     Expected: tabs between number and text preserved.
+     Bug was: tabs converted to spaces. -->
+
+1.	alpha
+2.	beta
+3.	gamma
+
+## Renumber with nested sublist
+
+<!-- Test: Place point at x and C-c C-r.
+     Known issue: may only renumber items in the same parser
+     list node, depending on how the grammar splits the tree. -->
+
+1. a
+2. a
+2. a
+2. a
+  - foo
+    1. foo
+    1. bar
+2. a
+2. a
+2. a x
+
+## Two separate lists
+
+<!-- Test: Place point in second list at x and C-c C-r.
+     Known issue: parser may merge both lists into one node,
+     causing the second to continue numbering from the first. -->
+
+ 1. a
+ 2. a
+ 3. a
+ 4. a
+ 5. a
+ 6. a
+ 7. a
+ 8. a
+ 9. a
+10. a
+
+1. space
+2. space
+3. space x

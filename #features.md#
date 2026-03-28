@@ -255,17 +255,6 @@ Rules can be added safely - they won't match if the extension is absent.
 
 ---
 
-## 6. Extension Build Flags Reference
-
-| Extension                               | Env Var                       | Default  |
-| --------------------------------------- | ----------------------------- | -------- |
-| GFM (tables, strikethrough, task lists) | `NO_DEFAULT_EXTENSIONS` unset | enabled  |
-| YAML front matter (`minus_metadata`)    | `NO_DEFAULT_EXTENSIONS` unset | enabled  |
-| TOML front matter (`plus_metadata`)     | `NO_DEFAULT_EXTENSIONS` unset | enabled  |
-| LaTeX / Math                            | `EXTENSION_LATEX` set         | disabled |
-| Wiki Links                              | `EXTENSION_WIKI_LINK` set     | disabled |
-| Tags                                    | `EXTENSION_TAGS` set          | disabled |
-
 ## 5. Editing / Mode Features (not parser-derived)
 
 ### Filling
@@ -322,10 +311,15 @@ Rules can be added safely - they won't match if the extension is absent.
 - [x] Code block insertion (with language prompt):  `C-c C-,` -> `c`
 - [x] Block quote insertion:  `C-c C-,` -> `q`
 - [x] Horizontal rule insertion:  `C-c C-,` -> `d`
-- [ ] Code block editing in indirect buffer
+- [ ] Code block editing in indirect buffer (Stéphane's task)
 - [ ] Commenting / uncommenting in code blocks in language mode
 
 ### Link Editing
+# Stephen Round 6 Test Cases
+# Stephen Round 6 Test Cases
+# Stephen Round 6 Test Cases
+# Stephen Round 6 Test Cases
+# Stephen Round 6 Test Cases
 
 - [ ] Link insertion helper
 - [ ] Link/reference completion (completing-read for existing refs)
@@ -369,8 +363,20 @@ Bugs in the tree-sitter-markdown parser that we cannot fix on our side.
       (e.g., nroff blocks), breaking inspector and embedded language
       fontification. Same root cause as Bug #3 (code blocks in block
       quotes). Grammar-level issue.
-- [ ] Python code blocks not fontified correctly in full config
+- [ ] Python code blocks not fontified correctly in full config —
+      Stéphane is debugging
 - [ ] Footnote support: parser doesn't recognize footnotes; not
       CommonMark/GFM, no build flag; would need custom handling
 
 ---
+
+## 6. Extension Build Flags Reference
+
+| Extension                               | Env Var                       | Default  |
+| --------------------------------------- | ----------------------------- | -------- |
+| GFM (tables, strikethrough, task lists) | `NO_DEFAULT_EXTENSIONS` unset | enabled  |
+| YAML front matter (`minus_metadata`)    | `NO_DEFAULT_EXTENSIONS` unset | enabled  |
+| TOML front matter (`plus_metadata`)     | `NO_DEFAULT_EXTENSIONS` unset | enabled  |
+| LaTeX / Math                            | `EXTENSION_LATEX` set         | disabled |
+| Wiki Links                              | `EXTENSION_WIKI_LINK` set     | disabled |
+| Tags                                    | `EXTENSION_TAGS` set          | disabled |
