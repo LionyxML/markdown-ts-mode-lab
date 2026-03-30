@@ -125,13 +125,13 @@ Before reporting a bug:
 
 ## Screenshots
 
-- [Default Theme Raw](demo/demo-default-theme-raw.md)
-- [Default Theme Hidden Markup](demo/demo-default-theme-hidden.md)
-- [Modus Operandi Raw](demo/demo-modus-operandi-raw.md)
-- [Modus Operandi Hidden Markup](demo/demo-modus-operandi-hidden.md)
-- [Modus Vivendi Raw](demo/demo-modus-vivendi-raw.md)
-- [Modus Vivendi Hidden Markup](demo/demo-modus-vivendi-hidden.md)
-- [Leuven Raw](demo/demo-leuven-raw.md)
-- [Leuven Hidden Markup](demo/demo-leuven-hidden.md)
-- [Leuven Dark Raw](demo/demo-leuven-dark-raw.md)
-- [Leuven Dark Hidden Markup](demo/demo-leuven-dark-hidden.md)
+* [Default Theme Raw](demo/demo-default-theme-raw.md)
+* [Default Theme Hidden Markup](demo/demo-default-theme-hidden.md)
+* [Modus Operandi Raw](demo/demo-modus-operandi-raw.md)
+* [Modus Operandi Hidden Markup](demo/demo-modus-operandi-hidden.md)
+* [Modus Vivendi Raw](demo/demo-modus-vivendi-raw.md)
+* [Modus Vivendi Hidden Markup](demo/demo-modus-vivendi-hidden.md)
+* [Leuven Raw](demo/demo-leuven-raw.md)
+* [Leuven Hidden Markup](demo/demo-leuven-hidden.md)
+* [Leuven Dark Raw](demo/demo-leuven-dark-raw.md)
+* [Leuven Dark Hidden Markup](demo/demo-leuven-dark-hidden.md)

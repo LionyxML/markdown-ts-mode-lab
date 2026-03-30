@@ -38,3 +38,15 @@
 
 ![test-leuven-dark-hidden-19.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-19.png)
 
+![test-leuven-dark-hidden-20.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-20.png)
+
+![test-leuven-dark-hidden-21.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-21.png)
+
+![test-leuven-dark-hidden-22.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-22.png)
+
+![test-leuven-dark-hidden-23.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-23.png)
+
+![test-leuven-dark-hidden-24.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-24.png)
+
+![test-leuven-dark-hidden-25.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-25.png)
+

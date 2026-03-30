@@ -325,29 +325,29 @@ This is CDATA content in an HTML block.
 </custom-element>
 
 <!-- Link Reference Definitions: recognition -->
-[example]: https://www.example.com
+[example]: https://www.gnu.org
 
 <!-- Link Reference Definitions: link_label handling -->
-[Example Label]: https://www.example.com
+[Example Label]: https://www.gnu.org
 
 <!-- Link Reference Definitions: link_destination (bare URL) -->
-[bare-url]: https://www.example.com/path?query=1
+[bare-url]: https://www.gnu.org/path?query=1
 
 <!-- Link Reference Definitions: link_destination (<angle-bracketed>) -->
-<!-- [angle-url]: <https://www.example.com/path with spaces> -->
+<!-- [angle-url]: <https://www.gnu.org/path with spaces> -->
 
 <!-- Link Reference Definitions: link_title ("double") -->
-[with-double-title]: https://www.example.com "Double quoted title"
+[with-double-title]: https://www.gnu.org "Double quoted title"
 
 <!-- Link Reference Definitions: link_title ('single') -->
-<!-- [with-single-title]: https://www.example.com 'Single quoted title' -->
+<!-- [with-single-title]: https://www.gnu.org 'Single quoted title' -->
 
 <!-- Link Reference Definitions: link_title ((parenthesized)) -->
-[with-paren-title]: https://www.example.com (Parenthesized title)
+[with-paren-title]: https://www.gnu.org (Parenthesized title)
 
 <!-- Link Reference Definitions: multi-line -->
 [multi-line-def]:
-  https://www.example.com/very/long/path
+  https://www.gnu.org/very/long/path
   "Title on next line"
 
 
@@ -396,10 +396,10 @@ The backticks around `this code` should be fontified as delimiters.
 All of `this text` should use the code span face.
 
 <!-- Links: inline link -->
-[Click here](https://www.example.com "Example Site")
+[Click here](https://www.gnu.org "Example Site")
 
 <!-- Links: inline link without title -->
-[Click here](https://www.example.com)
+[Click here](https://www.gnu.org)
 
 <!-- Links: full reference link -->
 [Click here][example]
@@ -411,13 +411,13 @@ All of `this text` should use the code span face.
 [example]
 
 <!-- Links: link text fontification -->
-The text [inside these brackets](https://example.com) should be fontified.
+The text [inside these brackets](https://www.gnu.org) should be fontified.
 
 <!-- Links: link destination fontification -->
 [link](https://this-url-should-be-fontified.com)
 
 <!-- Links: link title fontification -->
-[link](https://example.com "This title should be fontified")
+[link](https://www.gnu.org "This title should be fontified")
 
 <!-- Links: clickable link buttons (browse-url) -->
 [Open in browser](https://www.gnu.org)
@@ -429,7 +429,7 @@ The text [inside these brackets](https://example.com) should be fontified.
 [Only this text visible when markup hidden](https://hidden-url.com)
 
 <!-- Images: inline image -->
-![Alt text for image](https://www.example.com/image.png "Image title")
+![Alt text for image](https://www.gnu.org/image.png "Image title")
 
 <!-- Images: inline image without title -->
 ![Alt text](./local-image.png)
@@ -444,30 +444,30 @@ The text [inside these brackets](https://example.com) should be fontified.
 ![example]
 
 <!-- Images: image description fontification -->
-![This description should be fontified](https://example.com/img.png)
+![This description should be fontified](https://www.gnu.org/img.png)
 
 <!-- Images: inline image preview -->
-![Preview this image](https://www.example.com/photo.jpg)
+![Preview this image](https://www.gnu.org/photo.jpg)
 
 <!-- Autolinks: URI autolink -->
 Visit <https://www.gnu.org> for more info.
 
 <!-- Autolinks: email autolink -->
-Contact us at <user@example.com> for support.
+Contact us at <user@gnu.org> for support.
 
 <!-- Autolinks: fontification as clickable button -->
-The autolink <https://www.example.com> should be clickable.
+The autolink <https://www.gnu.org> should be clickable.
 
 <!-- Autolinks: angle bracket hiding when markup is hidden -->
-When markup is hidden, <https://www.example.com> should show without < >.
+When markup is hidden, <https://www.gnu.org> should show without < >.
 
 <!-- Naked URLs: bare URLs without angle brackets -->
 <!-- These are not handled by the grammar; goto-address-mode is a candidate. -->
 Visit https://www.gnu.org for more info.
 
-Here is a URL in the middle of text https://www.example.com/path?query=1&foo=bar and text continues.
+Here is a URL in the middle of text https://www.gnu.org/path?query=1&foo=bar and text continues.
 
-Also email addresses without angle brackets: user@example.com should ideally be recognized.
+Also email addresses without angle brackets: user@gnu.org should ideally be recognized.
 
 <!-- Inline HTML: open tags with attributes -->
 This is <span class="highlight" id="test"> inline HTML with attributes.
@@ -845,7 +845,7 @@ y = 100
 <!-- Available references: [example], [bare-url], [angle-url], etc. -->
 
 <!-- Markup Visibility: toggle markup hiding -->
-This has **bold**, *italic*, ~~strike~~, `code`, and [links](https://example.com).
+This has **bold**, *italic*, ~~strike~~, `code`, and [links](https://www.gnu.org).
 Use M-x markdown-ts-toggle-hide-markup to hide/show delimiters.
 
 <!-- Markup Visibility: horizontal rule overlay -->
@@ -1311,3 +1311,59 @@ x
 1. space
 2. space
 3. space x
+
+## Inline Image Preview Test Cases
+
+Toggle images with `C-c C-x C-v` (`markdown-ts-toggle-inline-images`).
+
+### Local relative path (should display)
+
+![Test image](test_image.png)
+
+### Local absolute path (should display)
+
+![Absolute](/Users/rmj/site-compiled/emacs/rahul/test_image.png)
+
+### Tilde path (should display if file exists)
+
+![Tilde](~/site-compiled/emacs/rahul/test_image.png)
+
+### Nonexistent file (should skip)
+
+![Missing](nonexistent.png)
+
+### Non-image file (should skip)
+
+![Not image](Makefile)
+
+### Empty alt text (should display)
+
+![](test_image.png)
+
+### Image in a list item
+
+- ![List image](test_image.png)
+- Second item
+
+### Multiple images on consecutive lines
+
+![First](test_image.png)
+![Second](test_image.png)
+
+### Image with spaces in path (should skip if file doesn't exist)
+
+![Spaced](path with spaces.png)
+
+### Images inside a paragraph
+
+This is the GNU logo ![gnu](test_image.png), and this is the Emacs logo ![emacs](https://www.gnu.org/software/emacs/images/emacs.png) inline in text.
+
+### Remote URL (should skip by default)
+
+<!-- (setq-local markdown-ts-display-remote-inline-images 'download) -->
+
+![Remote](https://www.gnu.org/software/emacs/images/emacs.png)
+
+### Image in a block quote
+
+> ![Quoted image](test_image.png)
