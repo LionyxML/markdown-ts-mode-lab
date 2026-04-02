@@ -50,3 +50,7 @@
 
 ![test-modus-operandi-hidden-25.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-operandi-hidden-25.png)
 
+![test-modus-operandi-hidden-26.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-operandi-hidden-26.png)
+
+![test-modus-operandi-hidden-27.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-operandi-hidden-27.png)
+

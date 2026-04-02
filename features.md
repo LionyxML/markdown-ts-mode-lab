@@ -279,7 +279,7 @@ Rules can be added safely - they won't match if the extension is absent.
 - [x] fill-region over multiple paragraphs
 - [x] Adaptive fill prefix for list items
 - [ ] Auto-fill respecting markdown structure
-- [ ] Filling inside code blocks in language mode
+- [x] Filling inside code blocks in language mode
 
 ### Navigation
 
@@ -299,6 +299,7 @@ Rules can be added safely - they won't match if the extension is absent.
 ### List Editing
 
 - [x] Auto-continue lists (RET inserts next item marker)
+- [x] Insert list item splitting text at point:  `M-RET`
 - [x] Numbered list auto-increment
 - [x] List promotion / demotion:  `M-left` / `M-right`
 - [x] List reordering (move up/down):  `M-up` / `M-down`
@@ -320,10 +321,20 @@ Rules can be added safely - they won't match if the extension is absent.
 
 - [ ] Block quote wrapping / unwrapping
 - [x] Code block insertion (with language prompt):  `C-c C-,` -> `c`
+- [x] Tilde code block insertion:  `C-c C-,` -> `t`
 - [x] Block quote insertion:  `C-c C-,` -> `q`
 - [x] Horizontal rule insertion:  `C-c C-,` -> `d`
 - [ ] Code block editing in indirect buffer
-- [ ] Commenting / uncommenting in code blocks in language mode
+- [x] Commenting / uncommenting in code blocks in language mode
+
+### Code Block Language Mode Commands
+
+- [x] Code block minor mode (`markdown-ts-code-block-mode`, auto-enabled in code blocks)
+- [x] Indentation in language mode:  `TAB`
+- [x] Newline in language mode:  `RET`
+- [x] Fill/reindent in language mode:  `M-q`
+- [x] xref-find-definitions in language mode:  `M-.`
+- [x] Commenting in language mode (`comment-dwim`, `comment-or-uncomment-region`)
 
 ### Link Editing
 
@@ -336,7 +347,8 @@ Rules can be added safely - they won't match if the extension is absent.
 
 ### Visual Enhancements (overlays / rendering)
 
-- [ ] Inline image preview
+- [x] Inline image preview (`markdown-ts-toggle-inline-images`): `C-c C-x C-v`
+- [x] Remote inline image download (`markdown-ts-display-remote-inline-images`)
 - [x] Task list checkbox toggle via `C-c C-c`
 - [ ] Task list checkbox toggle via mouse click (button)
 - [x] Task list checkbox overlay (display `[x]` as ☑ and `[ ]` as ☐)
@@ -354,7 +366,10 @@ Rules can be added safely - they won't match if the extension is absent.
 - [ ] Table of contents generation from headings
 - [ ] Theme support for markdown-ts faces (modus-themes, etc.)
 - [ ] Automated ERT tests (comprehensive test suite once features stabilize)
-- [ ] Export to HTML / preview
+- [x] Auto-detection via `markdown-ts-mode-maybe` (grammar install prompt)
+- [x] `markdown-mode` compatibility via `derived-mode-add-parents`
+- [ ] Export to HTML (pluggable backend, default pandoc)
+- [ ] Preview (pluggable backend, default eww)
 
 ### Parser Bugs
 

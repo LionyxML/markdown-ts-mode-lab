@@ -50,3 +50,7 @@
 
 ![test-leuven-dark-hidden-25.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-25.png)
 
+![test-leuven-dark-hidden-26.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-26.png)
+
+![test-leuven-dark-hidden-27.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-dark-hidden-27.png)
+

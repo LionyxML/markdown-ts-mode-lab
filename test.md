@@ -1345,10 +1345,13 @@ Toggle images with `C-c C-x C-v` (`markdown-ts-toggle-inline-images`).
 - ![List image](test_image.png)
 - Second item
 
-### Multiple images on consecutive lines
+### List of Images
 
-![First](test_image.png)
-![Second](test_image.png)
+- ![List image](test_image.png)
+- ![List image](test_image.png)
+- ![List image](test_image.png)
+- ![List image](test_image.png)
+
 
 ### Image with spaces in path (should skip if file doesn't exist)
 
@@ -1367,3 +1370,4 @@ This is the GNU logo ![gnu](test_image.png), and this is the Emacs logo ![emacs]
 ### Image in a block quote
 
 > ![Quoted image](test_image.png)
+

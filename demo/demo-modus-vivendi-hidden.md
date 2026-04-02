@@ -50,3 +50,7 @@
 
 ![test-modus-vivendi-hidden-25.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-vivendi-hidden-25.png)
 
+![test-modus-vivendi-hidden-26.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-vivendi-hidden-26.png)
+
+![test-modus-vivendi-hidden-27.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-vivendi-hidden-27.png)
+
