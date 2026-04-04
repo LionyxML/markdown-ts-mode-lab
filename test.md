@@ -778,13 +778,13 @@ first_block = True
 
 Some text between blocks.
 
-```javascript
+```javascript some nice js block
 let secondBlock = true;
 ```
 
 More text between blocks.
 
-```rust
+```rust some nice rust block
 let third_block = true;
 ```
 
@@ -1370,4 +1370,3 @@ This is the GNU logo ![gnu](test_image.png), and this is the Emacs logo ![emacs]
 ### Image in a block quote
 
 > ![Quoted image](test_image.png)
-
