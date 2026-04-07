@@ -52,3 +52,5 @@
 
 ![test-default-hidden-26.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-default-hidden-26.png)
 
+![test-default-hidden-27.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-default-hidden-27.png)
+

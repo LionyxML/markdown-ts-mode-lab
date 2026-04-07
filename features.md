@@ -131,6 +131,12 @@ development branch, not that it has been patched to master.
 - [x] Link title fontification
 - [x] Clickable link buttons (browse-url)
 - [x] File path links (find-file)
+- [x] Fragment link navigation (`[text](#anchor)`) — jumps to heading
+- [x] Heading slug index (GitHub gh-slugger algorithm)
+- [x] Heading slug index (Pandoc auto-id algorithm, ~99% overlap)
+- [x] Pandoc explicit heading id (`## Heading {#custom-id}`)
+- [x] Duplicate-heading slug suffixing (`-1`, `-2`, ...)
+- [x] Cached heading-id index, invalidated on `buffer-chars-modified-tick`
 - [x] Link destination hiding when markup is hidden
 
 ### Images
@@ -288,6 +294,7 @@ Rules can be added safely - they won't match if the extension is absent.
 - [x] Navigate between headings (next/previous):  `C-c C-n` / `C-c C-p`
 - [x] Navigate headings same level:  `C-c C-f` / `C-c C-b`
 - [x] Navigate up to parent heading:  `C-c C-u`
+- [x] Jump to heading via fragment link (`[text](#slug)`)
 - [ ] Navigate between code blocks (next/previous)
 
 ### Folding
@@ -366,7 +373,9 @@ Rules can be added safely - they won't match if the extension is absent.
 - [ ] Table of contents generation from headings
 - [ ] Theme support for markdown-ts faces (modus-themes, etc.)
 - [ ] Automated ERT tests (comprehensive test suite once features stabilize)
-- [x] Auto-detection via `markdown-ts-mode-maybe` (grammar install prompt)
+- [x] Auto-detection of `.md` / `.markdown` files via `auto-mode-alist`
+- [x] On-demand parser installation (`markdown-ts-mode-install-parsers`),
+      falls back to `fundamental-mode` with a warning if grammars missing
 - [x] `markdown-mode` compatibility via `derived-mode-add-parents`
 - [ ] Export to HTML (pluggable backend, default pandoc)
 - [ ] Preview (pluggable backend, default eww)

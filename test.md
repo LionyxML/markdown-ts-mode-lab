@@ -3,7 +3,7 @@ title		: The Official 'markdown-ts-mode.el' Feature Test File
 author		: Rahul Martim Juliato
 date		: 2026-03-18
 version		: 0.1.0
-parsers needed	: markdown, markdown-inline, yaml, toml, html, c, javascript, python, rust
+parsers needed	: markdown, markdown-inline, yaml, toml, html, c, javascript, python, ruby, rust
 ---
 
 <!-- You need all the above mentionated parsers installed to read this
@@ -15,7 +15,7 @@ parsers needed	: markdown, markdown-inline, yaml, toml, html, c, javascript, pyt
 title = "Feature Test File"
 author = "Rahul Martim Juliato"
 date = "2026-03-18"
-parsers = "markdown, markdown-inline, yaml, toml, html, c, javascript, python, rust"
+parsers = "markdown, markdown-inline, yaml, toml, html, c, javascript, python, ruby, rust"
 +++
 -->
 
@@ -424,6 +424,25 @@ The text [inside these brackets](https://www.gnu.org) should be fontified.
 
 <!-- Links: file path links (find-file) -->
 [Open local file](./README.md)
+
+<!-- Links: fragment links (jump to heading in current buffer) -->
+[Link to heading level 1](#heading-level-1)
+
+<!-- Links: fragment links with explicit HTML id -->
+## Heading With Custom ID {#custom-id}
+
+[Link to custom id](#custom-id)
+
+<!-- Links: fragment links with auto-generated slug -->
+## Auto Generated Slug Test
+
+[Link to auto-generated slug](#auto-generated-slug-test)
+
+<!-- Links: fragment links with special characters -->
+## Heading With Special!@#Characters
+
+[Link to special chars](#heading-with-specialcharacters)
+
 
 <!-- Links: link destination hiding when markup is hidden -->
 [Only this text visible when markup hidden](https://hidden-url.com)
