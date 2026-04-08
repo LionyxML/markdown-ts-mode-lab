@@ -54,3 +54,5 @@
 
 ![test-leuven-hidden-27.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-hidden-27.png)
 
+![test-leuven-hidden-28.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-leuven-hidden-28.png)
+
