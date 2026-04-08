@@ -202,8 +202,22 @@ def greet(name):
 <!-- Fenced Code Blocks: code_fence_content fontification -->
 
 ```javascript
-const x = 42;
-console.log(`The answer is ${x}`);
+/**
+ * Returns the answer to life, the universe, and everything.
+ * @returns {number}
+ */
+function getAnswer() {
+  return 42;
+}
+
+/**
+ * Logs the answer to the console.
+ * @returns {void}
+ */
+function logAnswer() {
+  const x = getAnswer();
+  console.log(`The answer is ${x}`);
+}
 
 ```
 
@@ -514,7 +528,7 @@ This line has a hard break\
 and continues on the next line.
 
 <!-- Hard Line Breaks: trailing spaces (2+ spaces before newline) -->
-This line has a hard break with trailing spaces
+This line has a hard break with trailing spaces  
 and continues on the next line.
 
 <!-- Backslash Escapes: all ASCII punctuation -->
