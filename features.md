@@ -71,6 +71,7 @@ development branch, not that it has been patched to master.
 - [x] Code block background face (overlay, with separate face for hidden markup)
 - [x] Conventional mode code blocks: nroff (via `nroff-mode`)
 - [x] Conventional mode code blocks: latex/tex (via `latex-mode`)
+- [ ] Improve latex support for more advanced users
 
 ### Indented Code Blocks
 
@@ -133,7 +134,7 @@ development branch, not that it has been patched to master.
 - [x] File path links (find-file)
 - [x] Fragment link navigation (`[text](#anchor)`) — jumps to heading
 - [x] Heading slug index (GitHub gh-slugger algorithm)
-- [x] Heading slug index (Pandoc auto-id algorithm, ~99% overlap)
+- [x] Heading slug index (Pandoc auto-id algorithm, 99% overlap)
 - [x] Pandoc explicit heading id (`## Heading {#custom-id}`)
 - [x] Duplicate-heading slug suffixing (`-1`, `-2`, ...)
 - [x] Cached heading-id index, invalidated on `buffer-chars-modified-tick`

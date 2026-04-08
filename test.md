@@ -40,6 +40,9 @@ parsers = "markdown, markdown-inline, yaml, toml, html, c, javascript, python, r
 <!-- ATX Headings: closing hashes -->
 ## Heading with Closing Hashes ##
 
+<!-- ATX Headings: closing hashes and link -->
+## FSF [FSF Site](https://www.fsf.org) ##
+
 <!-- ATX Headings: content parsed via inline parser -->
 ## Heading with *emphasis* and **bold** and `code`
 
@@ -528,7 +531,7 @@ This line has a hard break\
 and continues on the next line.
 
 <!-- Hard Line Breaks: trailing spaces (2+ spaces before newline) -->
-This line has a hard break with trailing spaces  
+This line has a hard break with trailing spaces
 and continues on the next line.
 
 <!-- Backslash Escapes: all ASCII punctuation -->
