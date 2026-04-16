@@ -531,7 +531,7 @@ This line has a hard break\
 and continues on the next line.
 
 <!-- Hard Line Breaks: trailing spaces (2+ spaces before newline) -->
-This line has a hard break with trailing spaces
+This line has a hard break with trailing spaces  
 and continues on the next line.
 
 <!-- Backslash Escapes: all ASCII punctuation -->
