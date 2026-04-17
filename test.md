@@ -210,7 +210,7 @@ def greet(name):
  * @returns {number}
  */
 function getAnswer() {
-  return 42;
+    return 42;
 }
 
 /**
@@ -218,8 +218,8 @@ function getAnswer() {
  * @returns {void}
  */
 function logAnswer() {
-  const x = getAnswer();
-  console.log(`The answer is ${x}`);
+    const x = getAnswer();
+    console.log(`The answer is ${x}`);
 }
 
 ```
@@ -228,8 +228,8 @@ function logAnswer() {
 ```c
 #include <stdio.h>
 int main(void) {
-    printf("Hello, world!\n");
-    return 0;
+  printf("Hello, world!\n");
+  return 0;
 }
 ```
 
