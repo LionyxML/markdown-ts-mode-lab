@@ -54,3 +54,9 @@
 
 ![test-modus-operandi-raw-27.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-operandi-raw-27.png)
 
+![test-modus-operandi-raw-28.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-operandi-raw-28.png)
+
+![test-modus-operandi-raw-29.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-operandi-raw-29.png)
+
+![test-modus-operandi-raw-30.png](https://codeberg.org/LionyxML/markdown-ts-mode-lab/raw/branch/screenshots/test-modus-operandi-raw-30.png)
+
