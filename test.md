@@ -2,13 +2,13 @@
 title: The Official 'markdown-ts-mode.el' Feature Test File
 author: Rahul Martim Juliato
 date: 2026-03-18
-version: 0.1.0
+version: 0.1.1
 parsers needed: markdown, markdown-inline, yaml, toml, html, c, javascript, python, ruby, rust
 ---
 
 <!-- You need all the above mentionated parsers installed to read this
-     document as intended or faces might be funny.  If you find some
-     strange colors, please check all of them are installed first. -->
+	 document as intended or faces might be funny.  If you find some
+	 strange colors, please check all of them are installed first. -->
 
 <!-- TOML header version (swap with YAML above to test):
 +++
@@ -166,16 +166,16 @@ Another paragraph separated by a blank line.
 
 - Top level item
   - Nested item level 2
-    - Nested item level 3
-      - Nested item level 4
+	- Nested item level 3
+	  - Nested item level 4
 
 1. Ordered top
    1. Ordered nested
-      1. Ordered deeply nested
+	  1. Ordered deeply nested
 
 - Mixed top
   1. Ordered inside unordered
-     - Unordered inside ordered inside unordered
+	 - Unordered inside ordered inside unordered
 
 <!-- Lists: loose vs tight list distinction -->
 <!-- Tight list (no blank lines between items): -->
@@ -206,7 +206,7 @@ Another paragraph separated by a blank line.
 
   ```python
   def hello():
-      print("inside a list item")
+	  print("inside a list item")
   ```
 
 - Item with a thematic break below:
@@ -231,7 +231,7 @@ no language specified
 
 ```python
 def greet(name):
-    return f"Hello, {name}!"
+	return f"Hello, {name}!"
 ```
 
 <!-- Fenced Code Blocks: code_fence_content fontification -->
@@ -269,10 +269,10 @@ int main(void) {
 
 ```rust
 fn main() {
-    let x = vec![1, 2, 3];
-    for item in &x {
+	let x = vec![1, 2, 3];
+	for item in &x {
 	println!("{}", item);
-    }
+	}
 }
 ```
 
@@ -295,15 +295,15 @@ The opening and closing delimiters should be fontified.
 
 <!-- Indented Code Blocks: recognition (4+ spaces) -->
 
-    This is an indented code block.
-    It requires 4 spaces of indentation.
-    Each line is part of the same block.
+	This is an indented code block.
+	It requires 4 spaces of indentation.
+	Each line is part of the same block.
 
 <!-- Indented Code Blocks: fontification -->
 
-    int x = 10;
-    int y = 20;
-    printf("%d\n", x + y);
+	int x = 10;
+	int y = 20;
+	printf("%d\n", x + y);
 
 <!-- HTML Blocks: type 1 (<pre>, <script>, <style>, <textarea>) -->
 <pre>
@@ -336,18 +336,18 @@ block.
 
 <!-- HTML Blocks: type 4 (<! declarations) -->
 <!-- BUG: uppercase <!DOCTYPE html> swallows entire document (parser bug,
-     https://github.com/tree-sitter-grammars/tree-sitter-markdown/issues/233).
-     Lowercase doesn't match type 4 start condition (needs uppercase after <!)
-     so it parses differently and doesn't break the rest of the file. -->
+	 https://github.com/tree-sitter-grammars/tree-sitter-markdown/issues/233).
+	 Lowercase doesn't match type 4 start condition (needs uppercase after <!)
+	 so it parses differently and doesn't break the rest of the file. -->
 <!doctype html>
 
 <!-- HTML Blocks: type 5 (<![CDATA[) -->
 <!-- NOTE: CDATA is valid CommonMark (HTML block type 5) but not valid
-     HTML5 outside SVG/MathML.  The markdown block parser handles it
-     correctly (html_block), but the embedded HTML parser produces
-     (ERROR (UNEXPECTED '[')) - it doesn't recognize CDATA as valid
-     markup.  No fontification is applied as a result.  Not a bug in
-     markdown-ts-mode. -->
+	 HTML5 outside SVG/MathML.  The markdown block parser handles it
+	 correctly (html_block), but the embedded HTML parser produces
+	 (ERROR (UNEXPECTED '[')) - it doesn't recognize CDATA as valid
+	 markup.  No fontification is applied as a result.  Not a bug in
+	 markdown-ts-mode. -->
 <![CDATA[
 This is CDATA content in an HTML block.
 ]]>
@@ -357,8 +357,8 @@ This is CDATA content in an HTML block.
 
 <nav id="main-nav">
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
+	<li><a href="/">Home</a></li>
+	<li><a href="/about">About</a></li>
   </ul>
 </nav>
 
@@ -556,6 +556,17 @@ The text [inside these brackets](https://www.gnu.org) should be fontified.
 
 ![Preview this image](https://www.gnu.org/photo.jpg)
 
+<!-- Links with brackets inside -->
+
+[a](<my file.md>)
+[b](<https://example.com/x>)
+[e](<mailto:x@y.z>)
+[f](<#heading>)
+[lbl]: <my ref.md>
+[h](<t.md> "title")
+![c](<test_image.png>)
+<https://auto.example.com>
+
 <!-- Autolinks: URI autolink -->
 
 Visit <https://www.gnu.org> for more info.
@@ -616,7 +627,7 @@ and continues on the next line.
 
 <!-- Hard Line Breaks: trailing spaces (2+ spaces before newline) -->
 
-This line has a hard break with trailing spaces  
+This line has a hard break with trailing spaces
 and continues on the next line.
 
 <!-- Backslash Escapes: all ASCII punctuation -->
@@ -788,7 +799,7 @@ The ~~tildes~~ should be fontified as delimiters and hideable.
 - [ ] Parent task
   - [x] Child task completed
   - [ ] Child task pending
-    - [x] Grandchild task completed
+	- [x] Grandchild task completed
 
 <!-- ============================================================ -->
 <!-- 4. Other Extensions (Non-GFM)                                -->
@@ -845,8 +856,8 @@ $$
 - $\dfrac{x}{y}$
 
 <!-- Superscript / Subscript: NOT SUPPORTED by tree-sitter-markdown grammar.
-     No EXTENSION_ build flag exists for this.  Pandoc/PHP Markdown Extra
-     syntax like superscript^2^ or subscript~2~ will not be parsed. -->
+	 No EXTENSION_ build flag exists for this.  Pandoc/PHP Markdown Extra
+	 syntax like superscript^2^ or subscript~2~ will not be parsed. -->
 
 superscript^2^ and subscript~2~ are NOT recognized.
 
@@ -1133,7 +1144,7 @@ This is strike through ~~text~~.
 ## Fill on unnumbered lists
 
 <!-- Test A: cursor on col 0 of the long "- three" line, M-q.
-     Expected: only the long item wraps, others untouched. -->
+	 Expected: only the long item wraps, others untouched. -->
 
 - one is a short item that should not be touched at all
 - two is another short item that should remain exactly as it is
@@ -1141,7 +1152,7 @@ This is strike through ~~text~~.
 - four is yet another short item that must stay on its own line
 
 <!-- Test B: cursor on col 0 of the long "- two" line, M-q.
-     Expected: only the long item wraps, others untouched. -->
+	 Expected: only the long item wraps, others untouched. -->
 
 - one is a short item
 - two is a very long list item that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it exceeds the fill-column width significantly and needs to be broken into multiple lines
@@ -1149,15 +1160,15 @@ This is strike through ~~text~~.
 - four is a short item
 
 <!-- Test C: cursor on col 0 of the long "- This is..." item, M-q.
-     Expected: only the long item wraps, others untouched. -->
+	 Expected: only the long item wraps, others untouched. -->
 
 - This is a very long list item that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it exceeds the fill-column width significantly.
 - short item
 - another short item
 
 <!-- Test D: cursor on col 0 of the long "  - inner one" line, M-q.
-     Expected: only the long inner item wraps, no merging across
-     items or nesting levels. -->
+	 Expected: only the long inner item wraps, no merging across
+	 items or nesting levels. -->
 
 - outer one
 - outer two has some text here
@@ -1168,8 +1179,8 @@ This is strike through ~~text~~.
 ## Fill in block quotes
 
 <!-- Test E: cursor on col 0 of the long "> block quote" line, M-q.
-     Expected: long line wraps with "> " prefix, no merging across
-     different nesting levels. -->
+	 Expected: long line wraps with "> " prefix, no merging across
+	 different nesting levels. -->
 
 > block quote that is a very long line and should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width by a significant amount
 >
@@ -1180,15 +1191,15 @@ This is strike through ~~text~~.
 > >   block quote
 
 <!-- Test F: cursor on col 0 of the long "> This is..." line, M-q.
-     Expected: long line wraps with "> " prefix.  "Short line" merges
-     in because both lines form one paragraph (no blank line between). -->
+	 Expected: long line wraps with "> " prefix.  "Short line" merges
+	 in because both lines form one paragraph (no blank line between). -->
 
 > This is a very long block quote line that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column.
 > Short line.
 
 <!-- Test G: cursor on col 0 of the long "> This is..." line, M-q.
-     Expected: long line wraps with "> " prefix.  "Short line" stays
-     separate because the blank "> " line creates a paragraph break. -->
+	 Expected: long line wraps with "> " prefix.  "Short line" stays
+	 separate because the blank "> " line creates a paragraph break. -->
 
 > This is a very long block quote line that should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column.
 >
@@ -1197,8 +1208,8 @@ This is strike through ~~text~~.
 ## Fill in nested block quotes with blank separator
 
 <!-- Test H: cursor on "nested block quote" line (line 2), M-q.
-     Expected: text stays on its own line, the "> >" blank line is
-     NOT merged into it.  The list items below are untouched. -->
+	 Expected: text stays on its own line, the "> >" blank line is
+	 NOT merged into it.  The list items below are untouched. -->
 
 > block quote
 >
@@ -1209,8 +1220,8 @@ This is strike through ~~text~~.
 > >   block quote
 
 <!-- Test I: cursor on the long "> > nested..." line, M-q.
-     Expected: long line wraps with "> > " prefix.  The blank "> >"
-     line acts as a paragraph break — list items are not merged. -->
+	 Expected: long line wraps with "> > " prefix.  The blank "> >"
+	 line acts as a paragraph break — list items are not merged. -->
 
 > block quote
 >
@@ -1223,16 +1234,16 @@ This is strike through ~~text~~.
 ## List promote/demote on ordered lists
 
 <!-- Test J: cursor on "2. two" line, M-left or M-right.
-     Expected: user-error "Ordered list items cannot be nested
-     (grammar limitation)".  The item must NOT be indented. -->
+	 Expected: user-error "Ordered list items cannot be nested
+	 (grammar limitation)".  The item must NOT be indented. -->
 
 1. one
 2. two
 3. three
 
 <!-- Test K: cursor on "- bar" line, M-right then M-left.
-     Expected: demote indents "- bar" under "- foo", promote
-     dedents it back.  Both directions work for unordered lists. -->
+	 Expected: demote indents "- bar" under "- foo", promote
+	 dedents it back.  Both directions work for unordered lists. -->
 
 - foo
 - bar
@@ -1241,8 +1252,8 @@ This is strike through ~~text~~.
 ## Fill in nested block quotes preserves prefix style
 
 <!-- Test L: cursor on the long "> > nested..." line, M-q.
-     Expected: long line wraps with "> > " prefix (spaced style)
-     on continuation lines.  Blank "> >" is not merged. -->
+	 Expected: long line wraps with "> > " prefix (spaced style)
+	 on continuation lines.  Blank "> >" is not merged. -->
 
 > block quote
 >
@@ -1252,8 +1263,8 @@ This is strike through ~~text~~.
 > >   block quote
 
 <!-- Test M: cursor on the long ">> nested..." line, M-q.
-     Expected: long line wraps with ">> " prefix (compact style)
-     on continuation lines.  Blank ">>" is not merged. -->
+	 Expected: long line wraps with ">> " prefix (compact style)
+	 on continuation lines.  Blank ">>" is not merged. -->
 
 > block quote
 >
@@ -1263,35 +1274,35 @@ This is strike through ~~text~~.
 > >   block quote
 
 <!-- Test N: cursor on the long ">>> deep..." line, M-q.
-     Expected: long line wraps with ">>> " prefix (compact style)
-     on continuation lines. -->
+	 Expected: long line wraps with ">>> " prefix (compact style)
+	 on continuation lines. -->
 
 > > > deep block quote that is a very long line and should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width
 
 <!-- Test O: cursor on the long "> > > deep..." line, M-q.
-     Expected: long line wraps with "> > > " prefix (spaced style)
-     on continuation lines. -->
+	 Expected: long line wraps with "> > > " prefix (spaced style)
+	 on continuation lines. -->
 
 > > > deep block quote that is a very long line and should be wrapped by fill-paragraph when you place your cursor on it and press M-q because it clearly exceeds the fill-column width
 
 ## Auto-continue lists (RET)
 
 <!-- Test P: cursor at end of "- foo" line, RET.
-     Expected: new line "- " inserted, cursor after "- ". -->
+	 Expected: new line "- " inserted, cursor after "- ". -->
 
 - foo
 - bar
 - baz
 
 <!-- Test Q: cursor at end of "2. second" line, RET.
-     Expected: new line "3. " inserted with incremented number. -->
+	 Expected: new line "3. " inserted with incremented number. -->
 
 1. first
 2. second
 3. third
 
 <!-- Test R: cursor at end of "  - inner" line, RET.
-     Expected: new line "  - " inserted at same nesting level. -->
+	 Expected: new line "  - " inserted at same nesting level. -->
 
 - outer
   - inner
@@ -1299,63 +1310,63 @@ This is strike through ~~text~~.
 - outer2
 
 <!-- Test S: cursor at end of "* one" line, RET.
-     Expected: new line "* " inserted (star marker preserved). -->
+	 Expected: new line "* " inserted (star marker preserved). -->
 
 - one
 - two
 
 <!-- Test T: cursor at end of "+ one" line, RET.
-     Expected: new line "+ " inserted (plus marker preserved). -->
+	 Expected: new line "+ " inserted (plus marker preserved). -->
 
 - one
 - two
 
 <!-- Test U: cursor at end of "2) beta" line, RET.
-     Expected: new line "3) " inserted (parenthesis style). -->
+	 Expected: new line "3) " inserted (parenthesis style). -->
 
 1. alpha
 2. beta
 
 <!-- Test V: type "- " then some text, RET, type more text, then
-     RET on an empty item (just "- " with no text).
-     Expected: the empty "- " line is removed (org-mode convention). -->
+	 RET on an empty item (just "- " with no text).
+	 Expected: the empty "- " line is removed (org-mode convention). -->
 
 - type here then RET
 -
 
 <!-- Test W: cursor at end of "    - deeply nested" line, RET.
-     Expected: new line "    - " at same 4-space indent level. -->
+	 Expected: new line "    - " at same 4-space indent level. -->
 
 - level 1
   - level 2
-    - deeply nested
-    - also nested
+	- deeply nested
+	- also nested
 
 <!-- Test X: cursor at end of a paragraph (not in a list), RET.
-     Expected: normal newline, no marker inserted. -->
+	 Expected: normal newline, no marker inserted. -->
 
 This is just a paragraph, not a list item.
 
 ## List renumbering
 
 <!-- Test Y: cursor anywhere in the list, C-c C-r.
-     Expected: renumber from first item's number (41, 42, 43). -->
+	 Expected: renumber from first item's number (41, 42, 43). -->
 
 41. first
 42. second
 43. third
 
 <!-- Test Z: cursor anywhere in the list, C-u 10 C-c C-r.
-     Expected: renumber starting from 10 (10, 11, 12). -->
+	 Expected: renumber starting from 10 (10, 11, 12). -->
 
 1. first
 2. second
 3. third
 
 <!-- Test AA: nested unordered inside ordered, cursor on "- bar", C-c C-r.
-     Expected: no-op (unordered list is not renumbered).
-     Note: nested ordered lists don't work (parser limitation,
-     see Commentary).  Only unordered lists nest correctly. -->
+	 Expected: no-op (unordered list is not renumbered).
+	 Note: nested ordered lists don't work (parser limitation,
+	 see Commentary).  Only unordered lists nest correctly. -->
 
 1. outer
    - foo
@@ -1363,14 +1374,14 @@ This is just a paragraph, not a list item.
 2. outer two
 
 <!-- Test AB: parenthesis style, C-c C-r.
-     Expected: renumber from 5 (5, 6, 7). -->
+	 Expected: renumber from 5 (5, 6, 7). -->
 
 5. alpha
 1. beta
 1. gamma
 
 <!-- Test AC: unordered list, C-c C-r.
-     Expected: no-op, unordered lists are not renumbered. -->
+	 Expected: no-op, unordered lists are not renumbered. -->
 
 - one
 - two
@@ -1383,8 +1394,8 @@ This is just a paragraph, not a list item.
 ## RET in block quotes (spurious list items)
 
 <!-- Test: Place point at x and press RET.
-     Expected: new "> " line, NOT a "- " item.
-     Bug was: parser sees block_continuation, finds wrong list_item. -->
+	 Expected: new "> " line, NOT a "- " item.
+	 Bug was: parser sees block_continuation, finds wrong list_item. -->
 
 > block quote
 >
@@ -1398,7 +1409,7 @@ This is just a paragraph, not a list item.
 ## RET in block-quoted list
 
 <!-- Test: Place point at x and press RET.
-     Expected: new "> > - " line with proper quote prefix. -->
+	 Expected: new "> > - " line with proper quote prefix. -->
 
 > block quote
 >
@@ -1411,8 +1422,8 @@ This is just a paragraph, not a list item.
 ## Empty list items preserved
 
 <!-- Test: Place point after the empty "- " and press RET.
-     Expected: new "- " below, empty item NOT deleted.
-     "I'd prefer to keep empty list items." -->
+	 Expected: new "- " below, empty item NOT deleted.
+	 "I'd prefer to keep empty list items." -->
 
 - foo
 -
@@ -1425,16 +1436,16 @@ This is just a paragraph, not a list item.
 ## RET in indented code block
 
 <!-- Test: Place point at x and press RET.
-     Expected: new line at same indentation (4 spaces). -->
+	 Expected: new line at same indentation (4 spaces). -->
 
-    pre block x
-    more pre block
+	pre block x
+	more pre block
 
 ## Fill short block-quoted list (no space removal)
 
 <!-- Test: Place point inside item on last line and M-q.
-     Expected: nothing changes, no space removed after ">".
-     Bug was: "> > - item" became "> >- item". -->
+	 Expected: nothing changes, no space removed after ">".
+	 Bug was: "> > - item" became "> >- item". -->
 
 > > - item
 > > - item
@@ -1442,8 +1453,8 @@ This is just a paragraph, not a list item.
 ## Fill long block-quoted list (should wrap)
 
 <!-- Test: Place point inside the long item and M-q.
-     Expected: wraps with "> > " prefix and list alignment.
-     Bug was: fill did nothing. -->
+	 Expected: wraps with "> > " prefix and list alignment.
+	 Bug was: fill did nothing. -->
 
 > > - item weofij wefoijw efoijw efoiwje foiwejf oiwejf oiwefj owiefj woiefj woeifj weoifj weofij weofij weofij wefoij wefoijw efoiwje foij
 > > - item
@@ -1451,8 +1462,8 @@ This is just a paragraph, not a list item.
 ## Renumber nested list (no extra indent)
 
 <!-- Test: Place point on "1. bar" and C-c C-r.
-     Expected: renumbers to 1, 2 without adding extra indentation.
-     Bug was: indentation doubled. -->
+	 Expected: renumbers to 1, 2 without adding extra indentation.
+	 Bug was: indentation doubled. -->
 
 - foo
   1. bar
@@ -1461,8 +1472,8 @@ This is just a paragraph, not a list item.
 ## Renumber preserves tabs
 
 <!-- Test: Place point in list and C-c C-r.
-     Expected: tabs between number and text preserved.
-     Bug was: tabs converted to spaces. -->
+	 Expected: tabs between number and text preserved.
+	 Bug was: tabs converted to spaces. -->
 
 1. alpha
 2. beta
@@ -1471,8 +1482,8 @@ This is just a paragraph, not a list item.
 ## Renumber with nested sublist
 
 <!-- Test: Place point at x and C-c C-r.
-     Known issue: may only renumber items in the same parser
-     list node, depending on how the grammar splits the tree. -->
+	 Known issue: may only renumber items in the same parser
+	 list node, depending on how the grammar splits the tree. -->
 
 1. a
 2. a
@@ -1490,8 +1501,8 @@ This is just a paragraph, not a list item.
 ## Two separate lists
 
 <!-- Test: Place point in second list at x and C-c C-r.
-     Known issue: parser may merge both lists into one node,
-     causing the second to continue numbering from the first. -->
+	 Known issue: parser may merge both lists into one node,
+	 causing the second to continue numbering from the first. -->
 
 1.  a
 2.  a
