@@ -1576,3 +1576,126 @@ This is the GNU logo ![gnu](test_image.png), and this is the Emacs logo ![emacs]
 ### Image in a block quote
 
 > ![Quoted image](test_image.png)
+
+# Link Destination Test Cases (bug#81979, #62)
+
+How a link destination is processed, in order:
+
+1. Decode (only for `[text](dest)`, `[ref]: dest` and images; never
+   for autolinks `<...>` or bare URLs, where CommonMark forbids
+   backslash escapes):
+   1. strip the optional `<...>` wrapper;
+   2. backslash escapes: `\` before ASCII punctuation is dropped
+	  (`features\.md` -> `features.md`), before anything else it stays
+	  (`READ\ME.md`, `path\ with spaces.md`);
+   3. entity and numeric references: `&amp;`, `&#46;`, `&#x52;`
+	  (unknown ones like `&bogus;` stay literal).
+2. Dispatch on the decoded string:
+   1. starts with `#`: fragment in this buffer (see 4);
+   2. `mailto:`: `url-mail-command`;
+   3. any other `scheme:`: `browse-url`, URL passed as-is
+	  (fragment and `%XX` untouched);
+   4. otherwise a local file, see 3.
+3. Local file:
+   1. split at the first `#` into FILE and FRAGMENT (an escaped `\#`
+	  is already a plain `#` after step 1, so it still splits);
+   2. percent-decode FILE (`%20` -> space, `%C3%B6` -> `ö`, invalid
+	  `%zz` stays), then `find-file`;
+   3. empty fragment: done.
+4. Fragment:
+   1. `L<n>`, `L<n>-L<m>` or `L<n>-<m>` (upper-case `L` only): go to
+	  line N.  This wins over a heading with that id, as in VS Code;
+   2. else, in a Markdown buffer: jump to the heading with that slug
+	  (GitHub, Pandoc or explicit `{#id}`), `user-error` if none;
+   3. else (non-Markdown file): ignore it, the file is just opened.
+
+## Local files: fragments
+
+- [README.md plain](README.md) (opens at top)
+- [README.md#L45](README.md#L45) (line 45, "## Upstream parser")
+- [README.md#L89-L100](README.md#L89-L100) (line 89, "## Usage")
+- [README.md#L89-100](README.md#L89-100) (line 89, range without second L)
+- [README.md#usage](README.md#usage) (heading "Usage", line 89)
+- [README.md#upstream-parser](README.md#upstream-parser) (heading, line 45)
+- [README.md#nope](README.md#nope) (opens file, `user-error` "No heading for fragment")
+- [features.md#block-quotes](features.md#block-quotes) (heading, line 42)
+- [features.md#L26](features.md#L26) (line 26, "### Setext Headings")
+- [generate-screenshots.el#L10](generate-screenshots.el#L10) (non-Markdown, line 10)
+- [generate-screenshots.el#foo](generate-screenshots.el#foo) (non-Markdown, unknown fragment: just opens)
+- [generate-screenshots.el#](generate-screenshots.el#) (empty fragment: just opens)
+- [test.md#L1](test.md#L1) (this file, line 1)
+- [test.md#custom-id](test.md#custom-id) (this file, explicit `{#custom-id}`)
+
+## Local files: escapes and entities
+
+- [backslash escape](features\.md) (opens features.md)
+- [decimal reference](README&#46;md) (opens README.md)
+- [hex reference](&#x52;EADME.md) (opens README.md)
+- [named entity](README&period;md) (opens README.md)
+- [bracketed + entity](<test&#95;image.png>) (opens test_image.png)
+- [entity + fragment](README&#46;md#L45) (README.md, line 45)
+- [escaped hash](README.md\#L45) (`\#` is still a fragment: README.md, line 45)
+- [unknown entity](README&bogus;md) (tries "README&bogus;md", stays literal)
+- [backslash before letter](<READ\ME.md>) (not an escape: tries "READ\ME.md")
+- [backslash before space](<path\ with spaces.md>) (not an escape: tries "path\ with spaces.md")
+
+Image with escaped destination (should display):
+
+![escaped image](test\_image.png)
+
+## Internal references (same buffer)
+
+- [Round 6](#round-6-test-cases) (heading, GitHub slug)
+- [List renumbering](#list-renumbering) (heading)
+- [Custom ID](#custom-id) (explicit id)
+- [Collision heading](#l3) (jumps to "### L3" below)
+- [#L3 in same buffer](#L3) (line 3 of this file)
+- [nope](#nope) (`user-error`)
+
+### L3
+
+Heading named "L3": its slug is `l3`, so `#L3` never collides with it.
+
+### Explicit L5 id {#L5}
+
+Explicit id `L5`: [test.md#L5](test.md#L5) and [#L5](#L5) both go to
+line 5 of this file, NOT here: `#L<n>` always wins over a heading, as
+in VS Code.  [README.md#L5](README.md#L5) goes to line 5 of README.md.
+
+## Reference links
+
+- [Ref with entity][ref-entity] (opens README.md)
+- [Ref with line][ref-line] (README.md, line 89)
+- [Ref with anchor][ref-anchor] (features.md, "Block Quotes")
+
+[ref-entity]: README&#46;md
+[ref-line]: <README.md#L89>
+[ref-anchor]: features.md#block-quotes
+
+## Remote URLs (browse-url, fragment kept as-is)
+
+- [GitHub line](https://github.com/LionyxML/markdown-ts-mode-lab/blob/main/README.md#L45)
+- [GitHub range](https://github.com/LionyxML/markdown-ts-mode-lab/blob/main/README.md#L45-L60)
+- [Codeberg line](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/README.md#L5)
+- [GitHub heading](https://github.com/LionyxML/markdown-ts-mode-lab#usage)
+- [Remote with entity](https://www.gnu.org/software/emacs/?a=1&amp;b=2) (URL should have `&b=2`)
+- [Remote with escape](https://www.gnu.org/software/emacs/\#news) (URL should end in `#news`)
+- <https://example.com/\[\> (autolink: backslashes stay literal)
+- <https://example.com/?a=1&amp;b=2> (autolink: SHOULD become `&b=2`, entities are decoded in URLs; known gap, stays `&amp;`)
+
+
+
+## Percent-encoding (local: decoded; remote: kept as-is)
+
+- [encoded dot](README%2Emd) (opens README.md)
+- [encoded letter](%52EADME.md#L45) (README.md, line 45)
+- [encoded underscore](test%5Fimage.png) (opens test_image.png)
+- [encoded space](path%20with%20spaces.md) (tries "path with spaces.md", new buffer)
+- [encoded UTF-8](f%C3%B6o.txt) (tries "föo.txt", new buffer)
+- [encoded percent](100%25.md) (tries "100%.md", new buffer)
+- [invalid escape](bad%zz.md) (tries "bad%zz.md" literally)
+- [remote encoded](https://www.gnu.org/software/emacs/manual/html%5Fnode/emacs/index.html) (URL keeps `%5F`)
+
+Image with percent-encoded destination (should display):
+
+![encoded image](test%5Fimage.png)
