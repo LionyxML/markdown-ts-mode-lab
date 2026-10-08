@@ -1585,16 +1585,23 @@ How a link destination is processed, in order:
    for autolinks `<...>` or bare URLs, where CommonMark forbids
    backslash escapes):
    1. strip the optional `<...>` wrapper;
-   2. backslash escapes: `\` before ASCII punctuation is dropped
-	  (`features\.md` -> `features.md`), before anything else it stays
-	  (`READ\ME.md`, `path\ with spaces.md`);
-   3. entity and numeric references: `&amp;`, `&#46;`, `&#x52;`
-	  (unknown ones like `&bogus;` stay literal).
+   2. backslash escapes and references, in a single pass (so
+	  `\&amp;` is a literal `&amp;`, and `&amp;#46;` is `&#46;`):
+	  1. backslash escapes: `\` before ASCII punctuation is dropped
+		 (`features\.md` -> `features.md`), before anything else it
+		 stays (`READ\ME.md`, `path\ with spaces.md`);
+	  2. entity and numeric references: `&amp;`, `&#46;`, `&#x52;`,
+		 `&#X52;`.  Only HTML entity names count (`&bogus;` and
+		 `&smiley;` stay literal).  A numeric reference has at most 7
+		 decimal or 6 hex digits (longer stays literal); zero,
+		 surrogates and values past U+10FFFF become U+FFFD.
 2. Dispatch on the decoded string:
    1. starts with `#`: fragment in this buffer (see 4);
    2. `mailto:`: `url-mail-command`;
    3. any other `scheme:`: `browse-url`, URL passed as-is
-	  (fragment and `%XX` untouched);
+	  (fragment and `%XX` untouched).  Schemes are case-insensitive
+	  and, as in CommonMark, 2 to 32 characters long, so a drive
+	  letter like `C:` is a file name;
    4. otherwise a local file, see 3.
 3. Local file:
    1. split at the first `#` into FILE and FRAGMENT (an escaped `\#`
@@ -1638,6 +1645,17 @@ How a link destination is processed, in order:
 - [unknown entity](README&bogus;md) (tries "README&bogus;md", stays literal)
 - [backslash before letter](<READ\ME.md>) (not an escape: tries "READ\ME.md")
 - [backslash before space](<path\ with spaces.md>) (not an escape: tries "path\ with spaces.md")
+- [escaped ampersand](README\&#46;md) (escape wins: tries "README&#46;md")
+- [escaped entity](a\&amp;b.md) (escape wins: tries "a&amp;b.md")
+- [decoded once](a&amp;#46;b.md) (not re-decoded: tries "a&#46;b.md")
+- [upper-case hex](&#X52;EADME.md) (opens README.md)
+- [non-HTML entity](README&smiley;md) (org-only name: tries "README&smiley;md")
+- [HTML5 entity](&ell;.md) (tries "ℓ.md")
+- [zero reference](x&#0;.md) (tries "x�.md", U+FFFD)
+- [surrogate reference](x&#xD800;.md) (tries "x�.md", U+FFFD)
+- [out of range hex](x&#x110000;.md) (tries "x�.md", U+FFFD)
+- [7-digit decimal](x&#9999999;.md) (tries "x�.md", U+FFFD)
+- [8-digit decimal](x&#99999999;.md) (too long, not a reference: tries "x&#99999999;.md", no fontification error)
 
 Image with escaped destination (should display):
 
@@ -1680,6 +1698,10 @@ in VS Code.  [README.md#L5](README.md#L5) goes to line 5 of README.md.
 - [GitHub heading](https://github.com/LionyxML/markdown-ts-mode-lab#usage)
 - [Remote with entity](https://www.gnu.org/software/emacs/?a=1&amp;b=2) (URL should have `&b=2`)
 - [Remote with escape](https://www.gnu.org/software/emacs/\#news) (URL should end in `#news`)
+- [Upper-case scheme](HTTPS://www.gnu.org) (`browse-url`, schemes are case-insensitive)
+- [Scheme with plus](svn+ssh://example.com/repo) (`browse-url`)
+- [Upper-case mailto](MAILTO:user@gnu.org) (`url-mail-command`)
+- [Drive letter](C:/foo.md) (one-letter "scheme": local file, tries "C:/foo.md")
 - <https://example.com/\[\> (autolink: backslashes stay literal)
 - <https://example.com/?a=1&amp;b=2> (autolink: SHOULD become `&b=2`, entities are decoded in URLs; known gap, stays `&amp;`)
 
