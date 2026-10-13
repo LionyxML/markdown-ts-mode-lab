@@ -1611,7 +1611,7 @@ How a link destination is processed, in order:
    3. empty fragment: done.
 4. Fragment:
    1. `L<n>`, `L<n>-L<m>` or `L<n>-<m>` (upper-case `L` only): go to
-	  line N.  This wins over a heading with that id, as in VS Code;
+	  line N.  This wins over a heading with that id;
    2. else, in a Markdown buffer: jump to the heading with that slug
 	  (GitHub, Pandoc or explicit `{#id}`), `user-error` if none;
    3. else (non-Markdown file): ignore it, the file is just opened.
@@ -1677,8 +1677,8 @@ Heading named "L3": its slug is `l3`, so `#L3` never collides with it.
 ### Explicit L5 id {#L5}
 
 Explicit id `L5`: [test.md#L5](test.md#L5) and [#L5](#L5) both go to
-line 5 of this file, NOT here: `#L<n>` always wins over a heading, as
-in VS Code.  [README.md#L5](README.md#L5) goes to line 5 of README.md.
+line 5 of this file, NOT here: `#L<n>` always wins over a heading.
+[README.md#L5](README.md#L5) goes to line 5 of README.md.
 
 ## Reference links
 
